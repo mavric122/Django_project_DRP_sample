@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <form action="/my_job/entrance/sample" method="post" name="sample">
+            
+            {% csrf_token %}
+                <select class="custom-select" name = 'sample'>
+                    <option selected>Шаблоны</option>
+                    {% for name in entrance %}
+                    <option value="{{ name.id }}">{{ name.address }}
+                        {% endfor %}
+                    </option>
+                </select>
+                <!-- <input name="sample" type='submit' value='name' class="btn btn-secondary btn-sm">Выбрать</button>> -->
+            <button input type="submit" value="{{ name.id }}" class="btn btn-secondary btn-sm">Выбрать</button>
+        </form>
+    </div>
+</div><br/>
+

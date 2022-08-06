@@ -29,5 +29,5 @@ def get_content(html):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def parse(html):
-    if html.status_code == 200:
+# def parse(html):
+#     if html.status_code == 200:

@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web_site.apps.WebSiteConfig',
-    'my_job.apps.WebSiteConfig',
+    'my_job.apps.MyJobConfig',
+
 
 
 ]
