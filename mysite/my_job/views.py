@@ -14,6 +14,7 @@ def title_my_job(request):
     return render(request, 'my_job/title_my_job.html', context=content)
 
 
+#
 def entrance(request):
     entrances = Entrance.objects.all()
     form = EntranceForm()
@@ -28,7 +29,7 @@ def entrance(request):
 
         form = EntranceForm(request.POST)
         if form.is_valid():
-            Entrance.objects.create(**form.cleaned_data)
+            Entrance.objects.create(**form.cleaned_data)  # Сохранение очищенных и провалидированных данных в шаблон.
 
     else:
         content = {
@@ -40,15 +41,14 @@ def entrance(request):
     return render(request, 'my_job/entrance.html', context=content, )
 
 
+# Функция для вывода данных из шаблонов в формы.
 def entrance_sample(request):
     entrances = Entrance.objects.all()
-
     form = EntranceForm()
     if request.method == 'POST':
-        id = request.POST.get('sample') # Получаю номер id
-        intention = Entrance.objects.get(pk=id)
-        print('id: '+ str(id) + 'intention' + str(intention))
-        form = EntranceForm(instance=intention)
+        id = request.POST.get('sample')  # Получаю номер id
+        intention = Entrance.objects.get(pk=id)  # Передаю данные по id
+        form = EntranceForm(instance=intention)  # форма с нужными данными из шаблона
 
     content = {
         'title': 'Ремонт подъезда',
@@ -57,21 +57,3 @@ def entrance_sample(request):
     }
 
     return render(request, 'my_job/entrance_sample.html', context=content)
-
-# def entrance_sample(request):
-#     entrances = Entrance.objects.all()
-#
-#     form = EntranceForm()
-#     if request.method == 'POST':
-#         sample = request.POST.get('sample')
-#         print(sample)
-#         data = {'address': sample, 'floor': sample}
-#         form = EntranceForm(initial=data)
-#
-#     content = {
-#         'title': 'Ремонт подъезда',
-#         'entrance': entrances,
-#         'form': form
-#     }
-#
-#     return render(request, 'my_job/entrance_sample.html', context=content)
