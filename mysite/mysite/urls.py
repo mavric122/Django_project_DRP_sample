@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from web_site.views import title_menu, parser
+from web_site.views import title_menu
+    # , parser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', title_menu, name='home'),
-    path('parser/', parser),
+    # path('parser/', parser),
     path('my_job', include('my_job.urls')),
 ]

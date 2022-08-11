@@ -1,5 +1,5 @@
 from django import forms
-from .models import Entrance
+from my_job.models import Entrance
 
 WALL_MATERIAL = [
     ('Panel', 'Панельный'),

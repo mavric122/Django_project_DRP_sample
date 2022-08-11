@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="input-group">
-            <form action="" method="post">
+            <form action="/my_job/entrance/sample/dv" method="post">
                 {% csrf_token %}
                 <div>
                     {% for field in form %}
@@ -24,7 +24,7 @@
                 </div>
                     {% endfor %}
                 </div>
-                <input type="submit", name="'button" class="btn btn-secondary btn-sm">
+                <input type="submit", name="'button" action="/my_job/entrance/sample/dv" value="Отправить" class="btn btn-secondary btn-sm">
             </form>
         </div>
     </div>

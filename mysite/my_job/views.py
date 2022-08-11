@@ -1,6 +1,4 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
 
 from .models import Entrance
 from .forms import EntranceForm
@@ -30,6 +28,7 @@ def entrance(request):
         form = EntranceForm(request.POST)
         if form.is_valid():
             Entrance.objects.create(**form.cleaned_data)  # Сохранение очищенных и провалидированных данных в шаблон.
+            id_entrance = request.POST.get('sample')  # Получаю номер id
 
     else:
         content = {
@@ -41,14 +40,14 @@ def entrance(request):
     return render(request, 'my_job/entrance.html', context=content, )
 
 
-# Функция для вывода данных из шаблонов в формы.
+# Страница для вывода данных из шаблонов в формы.
 def entrance_sample(request):
     entrances = Entrance.objects.all()
     form = EntranceForm()
     if request.method == 'POST':
-        id = request.POST.get('sample')  # Получаю номер id
-        intention = Entrance.objects.get(pk=id)  # Передаю данные по id
-        form = EntranceForm(instance=intention)  # форма с нужными данными из шаблона
+        id_entrance = request.POST.get('sample')  # Получаю номер id
+        intention = Entrance.objects.get(pk=id_entrance)  # Передаю данные по id
+        form = EntranceForm(instance=intention)  # форма с нужными данными из шаблона.
 
     content = {
         'title': 'Ремонт подъезда',
@@ -57,3 +56,17 @@ def entrance_sample(request):
     }
 
     return render(request, 'my_job/entrance_sample.html', context=content)
+
+
+
+
+
+def download_dv(request):
+    Entrance.objects.get(id=id_entrance)
+    doc = create_doc()
+    content = {
+        'title': 'Ремонт подъезда',
+        'doc': doc
+    }
+
+    return render(request, 'my_job/dv.html', context=content)
